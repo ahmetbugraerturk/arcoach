@@ -1,11 +1,13 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, library_private_types_in_public_api
 
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:arcoach/onBoardingScreens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:arcoach/constants.dart' as constants;
@@ -22,53 +24,126 @@ class _targetScreenState extends State<targetScreen> {
   Offset dragGesturePosition = Offset.zero;
   bool isPanning = false;
   bool isTapped = false;
+  bool isw2y = true;
+  List<String> points = [];
+  final shotCount = 6;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            if (points.length < shotCount) {
+              points.add(point);
+            } else {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return loginScreen();
+              }));
+            }
+          });
+        },
+        child: points.length == shotCount
+            ? Icon(Icons.arrow_forward)
+            : Icon(Icons.check),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Center(
+              child: SizedBox(
+                height: 50,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(points[index],
+                            style: Theme.of(context).textTheme.headlineMedium),
+                      );
+                    },
+                    itemCount: points.length),
+              ),
+            ),
+            const SizedBox(height: 40),
             Center(
                 child: Text(
               point,
               style: Theme.of(context).textTheme.headlineLarge,
             )),
             Stack(children: [
-              GestureDetector(
-                onPanUpdate: (DragUpdateDetails details) {
-                  setState(() {
-                    dragGesturePosition = details.localPosition;
-                    w2yCalcPoint(
-                        Size(MediaQuery.of(context).size.width,
-                            MediaQuery.of(context).size.width * 1.5),
-                        dragGesturePosition);
-                  });
-                },
-                onPanStart: (details) => isPanning = true,
-                onPanEnd: (details) => setState(() {
-                  isPanning = false;
-                }),
-                onTapDown: (details) {
-                  setState(() {
-                    dragGesturePosition = details.localPosition;
-                    isTapped = true;
-                    w2yCalcPoint(
-                        Size(MediaQuery.of(context).size.width,
-                            MediaQuery.of(context).size.width * 1.5),
-                        dragGesturePosition);
-                  });
-                },
-                child: CustomPaint(
-                  painter: w2yTargetPainter(dragGesturePosition, isTapped),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width * 1.5,
-                    alignment: Alignment.center,
-                  ),
-                ),
-              ),
+              isw2y
+                  ? GestureDetector(
+                      onPanUpdate: (DragUpdateDetails details) {
+                        setState(() {
+                          dragGesturePosition = details.localPosition;
+                          w2yCalcPoint(
+                              Size(MediaQuery.of(context).size.width,
+                                  MediaQuery.of(context).size.width * 1.3),
+                              dragGesturePosition);
+                        });
+                      },
+                      onPanStart: (details) => isPanning = true,
+                      onPanEnd: (details) => setState(() {
+                        isPanning = false;
+                      }),
+                      onTapDown: (details) {
+                        setState(() {
+                          dragGesturePosition = details.localPosition;
+                          isTapped = true;
+                          w2yCalcPoint(
+                              Size(MediaQuery.of(context).size.width,
+                                  MediaQuery.of(context).size.width * 1.3),
+                              dragGesturePosition);
+                        });
+                      },
+                      child: CustomPaint(
+                        painter:
+                            w2yTargetPainter(dragGesturePosition, isTapped),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width * 1.3,
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                    )
+                  : GestureDetector(
+                      onPanUpdate: (DragUpdateDetails details) {
+                        setState(() {
+                          dragGesturePosition = details.localPosition;
+                          bl2yCalcPoint(
+                              Size(MediaQuery.of(context).size.width,
+                                  MediaQuery.of(context).size.width * 1.3),
+                              dragGesturePosition);
+                        });
+                      },
+                      onPanStart: (details) => isPanning = true,
+                      onPanEnd: (details) => setState(() {
+                        isPanning = false;
+                      }),
+                      onTapDown: (details) {
+                        setState(() {
+                          dragGesturePosition = details.localPosition;
+                          isTapped = true;
+                          bl2yCalcPoint(
+                              Size(MediaQuery.of(context).size.width,
+                                  MediaQuery.of(context).size.width * 1.3),
+                              dragGesturePosition);
+                        });
+                      },
+                      child: CustomPaint(
+                        painter:
+                            bl2yTargetPainter(dragGesturePosition, isTapped),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width * 1.3,
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                    ),
               Positioned(
                 left: dragGesturePosition.dx,
                 top: dragGesturePosition.dy - 100,
@@ -322,7 +397,7 @@ double calcDistance(Offset a, Offset b) {
   return math.sqrt(math.pow(a.dx - b.dx, 2) + math.pow(a.dy - b.dy, 2));
 }
 
-void w2yCalcPoint(Size size, Offset _dragGesturePosition) {
+void w2yCalcPoint(Size size, Offset dragGesturePosition) {
   final maxSize = size.width / 2 * 0.9;
   final center = Offset(size.width / 2, size.height / 2);
 
@@ -342,8 +417,29 @@ void w2yCalcPoint(Size size, Offset _dragGesturePosition) {
   };
 
   distances.forEach((key, value) {
-    if (_dragGesturePosition != null &&
-        calcDistance(center, _dragGesturePosition) > key + 2.5) {
+    if (calcDistance(center, dragGesturePosition) > key + 2.5) {
+      point = value;
+    }
+  });
+}
+
+void bl2yCalcPoint(Size size, Offset dragGesturePosition) {
+  final maxSize = size.width / 2 * 0.9;
+  final center = Offset(size.width / 2, size.height / 2);
+
+  final distances = {
+    -2.5: "X",
+    maxSize * 1 / 12: "10",
+    maxSize * 1 / 6: "9",
+    maxSize * 2 / 6: "8",
+    maxSize * 3 / 6: "7",
+    maxSize * 4 / 6: "6",
+    maxSize * 5 / 6: "5",
+    maxSize: "0"
+  };
+
+  distances.forEach((key, value) {
+    if (calcDistance(center, dragGesturePosition) > key + 2.5) {
       point = value;
     }
   });
