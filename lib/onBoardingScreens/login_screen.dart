@@ -8,8 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'main.dart' as main;
-import 'constants.dart' as constants;
+import '../main.dart' as main;
+import '../constants.dart' as constants;
 
 class loginScreen extends StatefulWidget {
   const loginScreen({super.key});

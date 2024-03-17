@@ -1,4 +1,4 @@
-import 'package:arcoach/login_screen.dart';
+import 'package:arcoach/onBoardingScreens/login_screen.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

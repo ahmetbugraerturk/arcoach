@@ -1,4 +1,5 @@
 {
+    "@@locale": "tr",
     "login": "Giriş Yap",
     "register": "Kayıt Ol",
     "pleaseLogin": "Lütfen devam etmek için giriş yapınız",
