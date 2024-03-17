@@ -1,0 +1,16 @@
+{
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "pleaseLogin": "Lütfen devam etmek için giriş yapınız",
+    "welcome": "Hoş Geldiniz",
+    "forgotPass": "Şifremi unuttum",
+    "dontAccount": "Henüz hesabın yok mu?",
+    "password": "Şifre",
+    "email": "E-Posta",
+    "staySignedIn": "Oturumunuz açık kalsın mı?",
+    "developedBy": "Ahmet Buğra Ertürk tarafından geliştirildi",
+    "or": "ya da",
+    "teamKey": "Takım Kodu",
+    "name": "İsim",
+    "surname": "Soyisim"
+}

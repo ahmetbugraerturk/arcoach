@@ -1,0 +1,16 @@
+{
+    "login": "Login",
+    "register": "Sign Up",
+    "pleaseLogin": "Please login to continue",
+    "welcome": "Welcome to",
+    "forgotPass": "Forgot Password?",
+    "dontAccount": "Don't have an account?",
+    "password": "Password",
+    "email" : "Email",
+    "staySignedIn": "Stay signed in?",
+    "developedBy": "Developed by Ahmet Buğra Ertürk",
+    "or": "or",
+    "teamKey": "Team Key",
+    "name": "Name",
+    "surname": "Surname"
+}
