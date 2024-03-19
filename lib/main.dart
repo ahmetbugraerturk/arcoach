@@ -1,3 +1,4 @@
+import 'package:arcoach/athlethesScreens/main_screen.dart';
 import 'package:arcoach/athlethesScreens/target_screen.dart';
 import 'package:arcoach/onBoardingScreens/login_screen.dart';
 import 'package:collection/collection.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: constants.kLightTheme,
       darkTheme: constants.kDarkTheme,
       themeMode: ThemeMode.light,
-      home: const targetScreen(),
+      home: const mainScreen(),
     );
   }
 }
