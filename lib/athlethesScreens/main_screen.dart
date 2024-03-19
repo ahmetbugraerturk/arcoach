@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:arcoach/athlethesScreens/navScreens/chat_page.dart';
 import 'package:arcoach/athlethesScreens/navScreens/exercises_page.dart';
 import 'package:arcoach/athlethesScreens/navScreens/home_page.dart';
@@ -8,7 +10,7 @@ import 'package:r_nav_n_sheet/r_nav_n_sheet.dart';
 import 'package:arcoach/constants.dart' as constants;
 
 class mainScreen extends StatefulWidget {
-  const mainScreen({Key? key}) : super(key: key);
+  const mainScreen({super.key});
 
   @override
   _mainScreenState createState() => _mainScreenState();
@@ -63,7 +65,7 @@ class _mainScreenState extends State<mainScreen> {
           sheetCloseIcon: Icons.add,
           sheetCloseIconBoxColor: isLightTheme
               ? constants.myColorList[1]
-              : constants.myColorList[5],
+              : constants.myColorList[4],
           sheetCloseIconColor: isLightTheme
               ? constants.kLightBackgroundColor
               : constants.kDarkBackgroundColor,
@@ -72,7 +74,7 @@ class _mainScreenState extends State<mainScreen> {
               : constants.kDarkBackgroundColor,
           sheetOpenIconBoxColor: isLightTheme
               ? constants.myColorList[1]
-              : constants.myColorList[5],
+              : constants.myColorList[4],
           onSheetToggle: (v) {
             setState(() {
               _open = v;
