@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:arcoach/constants.dart' as constants;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -16,6 +17,7 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
+  final controller = PageController(viewportFraction: 0.8, keepPage: true);
   @override
   Widget build(BuildContext context) {
     bool isLightTheme = Theme.of(context).brightness == Brightness.light;
@@ -27,7 +29,7 @@ class _homePageState extends State<homePage> {
             Stack(
               children: [
                 Container(
-                  height: 200,
+                  height: MediaQuery.of(context).size.height / 5,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: isLightTheme
@@ -76,7 +78,7 @@ class _homePageState extends State<homePage> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(left: 5, right: 5),
-                  height: 200,
+                  height: MediaQuery.of(context).size.height / 4.5,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.transparent,
                 ),
@@ -85,7 +87,7 @@ class _homePageState extends State<homePage> {
                   left: 0,
                   child: Container(
                     margin: const EdgeInsets.only(left: 5),
-                    height: 200,
+                    height: MediaQuery.of(context).size.height / 4.5,
                     width: MediaQuery.of(context).size.width - 145,
                     decoration: BoxDecoration(
                       color: isLightTheme
@@ -116,8 +118,9 @@ class _homePageState extends State<homePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              height: 55,
-                              width: 100,
+                              height: MediaQuery.of(context).size.height / 16,
+                              width: (MediaQuery.of(context).size.width - 145) /
+                                  2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
                                     ? const Color.fromARGB(35, 20, 2, 9)
@@ -142,8 +145,9 @@ class _homePageState extends State<homePage> {
                               ),
                             ),
                             Container(
-                              height: 55,
-                              width: 100,
+                              height: MediaQuery.of(context).size.height / 16,
+                              width: (MediaQuery.of(context).size.width - 145) /
+                                  2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
                                     ? const Color.fromARGB(35, 20, 2, 9)
@@ -174,8 +178,9 @@ class _homePageState extends State<homePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              height: 55,
-                              width: 100,
+                              height: MediaQuery.of(context).size.height / 16,
+                              width: (MediaQuery.of(context).size.width - 145) /
+                                  2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
                                     ? const Color.fromARGB(35, 20, 2, 9)
@@ -200,8 +205,9 @@ class _homePageState extends State<homePage> {
                               ),
                             ),
                             Container(
-                              height: 55,
-                              width: 100,
+                              height: MediaQuery.of(context).size.height / 16,
+                              width: (MediaQuery.of(context).size.width - 145) /
+                                  2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
                                     ? const Color.fromARGB(35, 20, 2, 9)
@@ -227,6 +233,16 @@ class _homePageState extends State<homePage> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 7),
+                        SmoothPageIndicator(
+                          controller: controller,
+                          count: 5,
+                          effect: ExpandingDotsEffect(
+                              dotHeight: 5,
+                              dotWidth: 5,
+                              activeDotColor: constants.myColorList[3],
+                              dotColor: constants.myColorList[6]),
+                        )
                       ],
                     ),
                   ),
@@ -249,7 +265,7 @@ class _homePageState extends State<homePage> {
                   right: 20,
                   child: Container(
                     margin: const EdgeInsets.only(right: 5),
-                    height: 80,
+                    height: MediaQuery.of(context).size.height / 4.5 - 120,
                     width: 115,
                     decoration: BoxDecoration(
                       color: isLightTheme
@@ -298,7 +314,7 @@ class _homePageState extends State<homePage> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(left: 5),
-                  height: 200,
+                  height: MediaQuery.of(context).size.height / 4.5,
                   width: MediaQuery.of(context).size.width / 2 - 5,
                   decoration: BoxDecoration(
                     color: isLightTheme
@@ -324,13 +340,16 @@ class _homePageState extends State<homePage> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Text(
-                        "More info",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "More info",
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .copyWith(decoration: TextDecoration.underline),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -338,7 +357,7 @@ class _homePageState extends State<homePage> {
                 Stack(
                   children: [
                     Container(
-                      height: 200,
+                      height: MediaQuery.of(context).size.height / 4.5,
                       width: MediaQuery.of(context).size.width / 2 - 5,
                       child: Column(
                         children: [
@@ -347,8 +366,8 @@ class _homePageState extends State<homePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
-                                height: 60,
-                                width: 175,
+                                height: MediaQuery.of(context).size.height / 15,
+                                width: MediaQuery.of(context).size.width / 2.5,
                                 decoration: BoxDecoration(
                                   color: isLightTheme
                                       ? constants.myColorList[4]
@@ -381,8 +400,11 @@ class _homePageState extends State<homePage> {
                             children: [
                               SizedBox(height: 15),
                               Container(
-                                height: 60,
-                                width: 80,
+                                height: MediaQuery.of(context).size.height / 15,
+                                width:
+                                    (MediaQuery.of(context).size.width / 2.5 -
+                                            15) /
+                                        2,
                                 decoration: BoxDecoration(
                                   color: isLightTheme
                                       ? const Color.fromARGB(35, 20, 2, 9)
@@ -409,8 +431,11 @@ class _homePageState extends State<homePage> {
                               ),
                               SizedBox(width: 15),
                               Container(
-                                height: 60,
-                                width: 80,
+                                height: MediaQuery.of(context).size.height / 15,
+                                width:
+                                    (MediaQuery.of(context).size.width / 2.5 -
+                                            15) /
+                                        2,
                                 decoration: BoxDecoration(
                                   color: isLightTheme
                                       ? const Color.fromARGB(35, 20, 2, 9)

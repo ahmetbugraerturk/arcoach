@@ -41,6 +41,7 @@ dependencies:
   intl: any
   collection: ^1.18.0
   r_nav_n_sheet: ^1.0.2
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:

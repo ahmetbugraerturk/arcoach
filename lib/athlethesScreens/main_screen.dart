@@ -27,7 +27,7 @@ class _mainScreenState extends State<mainScreen> {
       body: _index == 0
           ? const homePage()
           : _index == 1
-              ? const exercisesPage()
+              ? const targetScreen()
               : _index == 2
                   ? const chatPage()
                   : const profilePage(),
