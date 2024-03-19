@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: constants.kLightTheme,
       darkTheme: constants.kDarkTheme,
       themeMode: ThemeMode.light,
-      home: const mainScreen(),
+      home: const loginScreen(),
     );
   }
 }

@@ -46,7 +46,8 @@ class _homePageState extends State<homePage> {
                   left: 30,
                   child: Text(
                     "Good Morning!",
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontSize: MediaQuery.of(context).size.width / 12),
                   ),
                 ),
                 Positioned(
@@ -54,19 +55,20 @@ class _homePageState extends State<homePage> {
                   left: 30,
                   child: Text(
                     "${AppLocalizations.of(context)!.welcome} Arcoach",
-                    style: Theme.of(context).textTheme.labelLarge,
+                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        fontSize: MediaQuery.of(context).size.width / 25),
                   ),
                 ),
                 Positioned(
                   bottom: 0,
                   right: 20,
                   child: CircleAvatar(
-                    radius: 60,
+                    radius: MediaQuery.of(context).size.width / 7.5,
                     backgroundColor: isLightTheme
                         ? constants.kLightBackgroundColor
                         : constants.kDarkBackgroundColor,
-                    child: const CircleAvatar(
-                      radius: 55,
+                    child: CircleAvatar(
+                      radius: MediaQuery.of(context).size.width / 8,
                       backgroundImage: AssetImage("assets/images/profile.jpg"),
                     ),
                   ),
@@ -86,9 +88,12 @@ class _homePageState extends State<homePage> {
                   top: 0,
                   left: 0,
                   child: Container(
+                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                     margin: const EdgeInsets.only(left: 5),
                     height: MediaQuery.of(context).size.height / 4.5,
-                    width: MediaQuery.of(context).size.width - 145,
+                    width: MediaQuery.of(context).size.width -
+                        MediaQuery.of(context).size.width / 15 * 4 -
+                        25,
                     decoration: BoxDecoration(
                       color: isLightTheme
                           ? constants.myColorList[5]
@@ -100,7 +105,8 @@ class _homePageState extends State<homePage> {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 15),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 50),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -113,13 +119,18 @@ class _homePageState extends State<homePage> {
                             )
                           ],
                         ),
-                        SizedBox(height: 15),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 80),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
                               height: MediaQuery.of(context).size.height / 16,
-                              width: (MediaQuery.of(context).size.width - 145) /
+                              width: (MediaQuery.of(context).size.width -
+                                      MediaQuery.of(context).size.width /
+                                          15 *
+                                          4 -
+                                      25) /
                                   2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
@@ -146,7 +157,11 @@ class _homePageState extends State<homePage> {
                             ),
                             Container(
                               height: MediaQuery.of(context).size.height / 16,
-                              width: (MediaQuery.of(context).size.width - 145) /
+                              width: (MediaQuery.of(context).size.width -
+                                      MediaQuery.of(context).size.width /
+                                          15 *
+                                          4 -
+                                      25) /
                                   2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
@@ -173,13 +188,18 @@ class _homePageState extends State<homePage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 15),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 100),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
                               height: MediaQuery.of(context).size.height / 16,
-                              width: (MediaQuery.of(context).size.width - 145) /
+                              width: (MediaQuery.of(context).size.width -
+                                      MediaQuery.of(context).size.width /
+                                          15 *
+                                          4 -
+                                      25) /
                                   2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
@@ -206,7 +226,11 @@ class _homePageState extends State<homePage> {
                             ),
                             Container(
                               height: MediaQuery.of(context).size.height / 16,
-                              width: (MediaQuery.of(context).size.width - 145) /
+                              width: (MediaQuery.of(context).size.width -
+                                      MediaQuery.of(context).size.width /
+                                          15 *
+                                          4 -
+                                      25) /
                                   2.5,
                               decoration: BoxDecoration(
                                 color: isLightTheme
@@ -233,7 +257,8 @@ class _homePageState extends State<homePage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 7),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 100),
                         SmoothPageIndicator(
                           controller: controller,
                           count: 5,
@@ -248,11 +273,12 @@ class _homePageState extends State<homePage> {
                   ),
                 ),
                 Positioned(
-                  bottom: 80,
-                  right: 80,
+                  bottom: MediaQuery.of(context).size.height / 4.5 -
+                      MediaQuery.of(context).size.width / 15 * 4,
+                  right: MediaQuery.of(context).size.width / 15 * 2 + 20,
                   child: Container(
-                    height: 60,
-                    width: 60,
+                    height: MediaQuery.of(context).size.width / 15 * 2,
+                    width: MediaQuery.of(context).size.width / 15 * 2,
                     decoration: BoxDecoration(
                       color: isLightTheme
                           ? constants.myColorList[5]
@@ -265,8 +291,9 @@ class _homePageState extends State<homePage> {
                   right: 20,
                   child: Container(
                     margin: const EdgeInsets.only(right: 5),
-                    height: MediaQuery.of(context).size.height / 4.5 - 120,
-                    width: 115,
+                    height: MediaQuery.of(context).size.height / 4.5 -
+                        MediaQuery.of(context).size.width / 15 * 4,
+                    width: MediaQuery.of(context).size.width / 15 * 4 - 5,
                     decoration: BoxDecoration(
                       color: isLightTheme
                           ? constants.myColorList[5]
@@ -287,20 +314,21 @@ class _homePageState extends State<homePage> {
                   right: 20,
                   top: 0,
                   child: Container(
-                    width: 120,
-                    height: 120,
+                    width: MediaQuery.of(context).size.width / 15 * 4,
+                    height: MediaQuery.of(context).size.width / 15 * 4,
                     decoration: BoxDecoration(
                       color: isLightTheme
                           ? constants.kLightBackgroundColor
                           : constants.kDarkBackgroundColor,
-                      borderRadius: BorderRadius.circular(60),
+                      borderRadius: BorderRadius.circular(
+                          MediaQuery.of(context).size.width / 7),
                     ),
                     alignment: Alignment.center,
                     child: CustomPaint(
                       painter: w2yTargetPainter(),
                       child: Container(
-                        width: 110,
-                        height: 110,
+                        width: MediaQuery.of(context).size.width / 16 * 4,
+                        height: MediaQuery.of(context).size.width / 16 * 4,
                         alignment: Alignment.center,
                       ),
                     ),
@@ -394,11 +422,14 @@ class _homePageState extends State<homePage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height / 100),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(height: 15),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 100),
                               Container(
                                 height: MediaQuery.of(context).size.height / 15,
                                 width:
@@ -429,7 +460,7 @@ class _homePageState extends State<homePage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 15),
+                              const SizedBox(width: 15),
                               Container(
                                 height: MediaQuery.of(context).size.height / 15,
                                 width:
@@ -460,7 +491,9 @@ class _homePageState extends State<homePage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 100),
                             ],
                           ),
                           FloatingActionButton(

@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:arcoach/athlethesScreens/main_screen.dart';
 import 'package:arcoach/athlethesScreens/target_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -246,7 +247,7 @@ class _loginScreenState extends State<loginScreen> {
   void clickDontHaveAccount() {}
   void clickLogin() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return targetScreen();
+      return mainScreen();
     }));
   }
 }
