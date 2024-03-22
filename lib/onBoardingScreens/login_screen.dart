@@ -146,21 +146,21 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 100,
-                          ),
-                          Container(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () => clickForgotPass(),
-                              child: Text(
-                                AppLocalizations.of(context)!.forgotPass,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: isLightTheme
-                                      ? constants.kLightTextColor
-                                      : constants.kDarkTextColor,
-                                  height: 1,
+                          Positioned(
+                            bottom: 5,
+                            child: Container(
+                              alignment: Alignment.centerRight,
+                              child: GestureDetector(
+                                onTap: () => clickForgotPass(),
+                                child: Text(
+                                  AppLocalizations.of(context)!.forgotPass,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: isLightTheme
+                                        ? constants.kLightTextColor
+                                        : constants.kDarkTextColor,
+                                    height: 1,
+                                  ),
                                 ),
                               ),
                             ),

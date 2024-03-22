@@ -17,6 +17,7 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
+  final isw2y = true;
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,8 @@ class _homePageState extends State<homePage> {
             Stack(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(left: 5, right: 5),
+                  constraints: BoxConstraints(minHeight: 175),
+                  margin: const EdgeInsets.only(right: 5),
                   height: MediaQuery.of(context).size.height / 4.5,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.transparent,
@@ -88,12 +90,15 @@ class _homePageState extends State<homePage> {
                   top: 0,
                   left: 0,
                   child: Container(
+                    constraints: BoxConstraints(minHeight: 175),
                     padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                    margin: const EdgeInsets.only(left: 5),
+                    margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width / 30),
                     height: MediaQuery.of(context).size.height / 4.5,
                     width: MediaQuery.of(context).size.width -
                         MediaQuery.of(context).size.width / 15 * 4 -
-                        25,
+                        20 -
+                        MediaQuery.of(context).size.width / 30,
                     decoration: BoxDecoration(
                       color: isLightTheme
                           ? constants.myColorList[5]
@@ -110,13 +115,17 @@ class _homePageState extends State<homePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width / 20),
                             GestureDetector(
                               child: Icon(Icons.arrow_back_ios),
                             ),
                             Text("Exercises Date"),
                             GestureDetector(
                               child: Icon(Icons.arrow_forward_ios),
-                            )
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width / 20),
                           ],
                         ),
                         SizedBox(
@@ -125,6 +134,7 @@ class _homePageState extends State<homePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
+                              constraints: BoxConstraints(minHeight: 50),
                               height: MediaQuery.of(context).size.height / 16,
                               width: (MediaQuery.of(context).size.width -
                                       MediaQuery.of(context).size.width /
@@ -156,6 +166,7 @@ class _homePageState extends State<homePage> {
                               ),
                             ),
                             Container(
+                              constraints: BoxConstraints(minHeight: 50),
                               height: MediaQuery.of(context).size.height / 16,
                               width: (MediaQuery.of(context).size.width -
                                       MediaQuery.of(context).size.width /
@@ -194,6 +205,7 @@ class _homePageState extends State<homePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
+                              constraints: BoxConstraints(minHeight: 50),
                               height: MediaQuery.of(context).size.height / 16,
                               width: (MediaQuery.of(context).size.width -
                                       MediaQuery.of(context).size.width /
@@ -225,6 +237,7 @@ class _homePageState extends State<homePage> {
                               ),
                             ),
                             Container(
+                              constraints: BoxConstraints(minHeight: 50),
                               height: MediaQuery.of(context).size.height / 16,
                               width: (MediaQuery.of(context).size.width -
                                       MediaQuery.of(context).size.width /
@@ -273,8 +286,10 @@ class _homePageState extends State<homePage> {
                   ),
                 ),
                 Positioned(
-                  bottom: MediaQuery.of(context).size.height / 4.5 -
-                      MediaQuery.of(context).size.width / 15 * 4,
+                  bottom: MediaQuery.of(context).size.height / 4.5 > 175
+                      ? MediaQuery.of(context).size.height / 4.5 -
+                          MediaQuery.of(context).size.width / 15 * 4
+                      : 175 - MediaQuery.of(context).size.width / 15 * 4,
                   right: MediaQuery.of(context).size.width / 15 * 2 + 20,
                   child: Container(
                     height: MediaQuery.of(context).size.width / 15 * 2,
@@ -290,6 +305,9 @@ class _homePageState extends State<homePage> {
                   bottom: 0,
                   right: 20,
                   child: Container(
+                    constraints: BoxConstraints(
+                        minHeight:
+                            175 - MediaQuery.of(context).size.width / 7.5 * 2),
                     margin: const EdgeInsets.only(right: 5),
                     height: MediaQuery.of(context).size.height / 4.5 -
                         MediaQuery.of(context).size.width / 15 * 4,
@@ -325,7 +343,7 @@ class _homePageState extends State<homePage> {
                     ),
                     alignment: Alignment.center,
                     child: CustomPaint(
-                      painter: w2yTargetPainter(),
+                      painter: isw2y ? w2yTargetPainter() : bl2yTargetPainter(),
                       child: Container(
                         width: MediaQuery.of(context).size.width / 16 * 4,
                         height: MediaQuery.of(context).size.width / 16 * 4,
@@ -341,7 +359,9 @@ class _homePageState extends State<homePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(left: 5),
+                  constraints: BoxConstraints(minHeight: 175),
+                  margin: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width / 30),
                   height: MediaQuery.of(context).size.height / 4.5,
                   width: MediaQuery.of(context).size.width / 2 - 5,
                   decoration: BoxDecoration(
@@ -360,7 +380,7 @@ class _homePageState extends State<homePage> {
                       ),
                       const SizedBox(height: 5),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
                         child: Text(
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget nulla id dolor pulvinar consectetur elementum et sem. Etiam eleifend feugiat feugiat. Proin sagittis urna ut orci tempus, et scelerisque mauris tempor. Cras tempus mattis ante, nec dignissim felis ullamcorper at. Proin pulvinar viverra rutrum. In hac habitasse platea dictumst. Sed pulvinar accumsan quam vel.",
                           style: Theme.of(context).textTheme.labelMedium,
@@ -369,6 +389,8 @@ class _homePageState extends State<homePage> {
                         ),
                       ),
                       TextButton(
+                        style: const ButtonStyle(
+                            alignment: Alignment.bottomCenter),
                         onPressed: () {},
                         child: Text(
                           "More info",
@@ -385,8 +407,10 @@ class _homePageState extends State<homePage> {
                 Stack(
                   children: [
                     Container(
+                      constraints: BoxConstraints(minHeight: 175),
                       height: MediaQuery.of(context).size.height / 4.5,
-                      width: MediaQuery.of(context).size.width / 2 - 5,
+                      width: MediaQuery.of(context).size.width / 2 -
+                          MediaQuery.of(context).size.width / 30,
                       child: Column(
                         children: [
                           SizedBox(height: 5),
@@ -394,6 +418,7 @@ class _homePageState extends State<homePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
+                                constraints: BoxConstraints(minHeight: 50),
                                 height: MediaQuery.of(context).size.height / 15,
                                 width: MediaQuery.of(context).size.width / 2.5,
                                 decoration: BoxDecoration(
@@ -431,6 +456,7 @@ class _homePageState extends State<homePage> {
                                   height:
                                       MediaQuery.of(context).size.height / 100),
                               Container(
+                                constraints: BoxConstraints(minHeight: 50),
                                 height: MediaQuery.of(context).size.height / 15,
                                 width:
                                     (MediaQuery.of(context).size.width / 2.5 -
@@ -462,6 +488,7 @@ class _homePageState extends State<homePage> {
                               ),
                               const SizedBox(width: 15),
                               Container(
+                                constraints: BoxConstraints(minHeight: 50),
                                 height: MediaQuery.of(context).size.height / 15,
                                 width:
                                     (MediaQuery.of(context).size.width / 2.5 -
@@ -636,7 +663,7 @@ class w2yTargetPainter extends CustomPainter {
 class bl2yTargetPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final maxSize = size.width;
+    final maxSize = size.width / 2;
     final center = Offset(size.width / 2, size.height / 2);
     //First blue circle
     final paintBl1 = Paint()
