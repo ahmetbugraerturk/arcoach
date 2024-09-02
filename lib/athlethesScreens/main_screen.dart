@@ -1,5 +1,34 @@
 // ignore_for_file: camel_case_types
 
+/*
+In order to make the selected item color change,
+I had to add a selected property to the RNavItem class.
+This is a custom addition to the package.
+These additions are marked with "Custom added!!!!!!!!!"
+Added this class to the r_nav_item.dart file. At line 4-22.
+class RNavItem {
+  /// Icon when item is not selected
+  final IconData icon;
+
+  /// Icon when item is  selected
+  final IconData? activeIcon;
+
+  /// Label of the item
+  final String label;
+
+  final bool selected; //Custom added!!!!!!!!
+
+  const RNavItem({
+    required this.icon,
+    required this.label,
+    this.activeIcon,
+    required this.selected, //Custom added!!!!!!!!
+  });
+}
+And added this line to the r_nav_n_sheet.dart file. At line 197.
+selected: item.selected, //Custom added!!!!!!!!
+*/
+
 import 'package:arcoach/athlethesScreens/navScreens/chat_page.dart';
 import 'package:arcoach/athlethesScreens/navScreens/exercises_page.dart';
 import 'package:arcoach/athlethesScreens/navScreens/home_page.dart';
@@ -19,28 +48,40 @@ class mainScreen extends StatefulWidget {
 class _mainScreenState extends State<mainScreen> {
   int _index = 0;
   bool _open = false;
+  final PageController _pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     bool isLightTheme = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      body: _index == 0
-          ? const homePage()
-          : _index == 1
-              ? const targetScreen()
-              : _index == 2
-                  ? const chatPage()
-                  : const profilePage(),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _index = index;
+          });
+        },
+        children: const [
+          homePage(),
+          targetScreen(),
+          chatPage(),
+          profilePage(),
+        ],
+      ),
       bottomNavigationBar: RNavNSheet(
           onTap: (index) {
-            setState(() {
-              _index = index;
-            });
-            Future.delayed(const Duration(seconds: 1), () {
-              setState(() {
-                _index = index;
-              });
-            });
+            _pageController.jumpToPage(index);
           },
           initialSelectedIndex: _index,
           borderColors: [
@@ -65,41 +106,45 @@ class _mainScreenState extends State<mainScreen> {
           sheetCloseIcon: Icons.add,
           sheetCloseIconBoxColor: isLightTheme
               ? constants.myColorList[1]
-              : constants.myColorList[4],
+              : constants.myColorList[0],
           sheetCloseIconColor: isLightTheme
               ? constants.kLightBackgroundColor
-              : constants.kDarkBackgroundColor,
+              : constants.myColorList[5],
           sheetOpenIconColor: isLightTheme
               ? constants.kLightBackgroundColor
-              : constants.kDarkBackgroundColor,
+              : constants.myColorList[5],
           sheetOpenIconBoxColor: isLightTheme
               ? constants.myColorList[1]
-              : constants.myColorList[4],
+              : constants.myColorList[0],
           onSheetToggle: (v) {
             setState(() {
               _open = v;
             });
           },
-          items: const [
+          items: [
             RNavItem(
               activeIcon: Icons.home,
               icon: Icons.home,
               label: "Home",
+              selected: _index == 0,
             ),
             RNavItem(
               icon: Icons.track_changes,
               activeIcon: Icons.track_changes,
               label: "Exercises",
+              selected: _index == 1,
             ),
             RNavItem(
               icon: Icons.chat_bubble,
               activeIcon: Icons.chat_bubble,
               label: "Chat",
+              selected: _index == 2,
             ),
             RNavItem(
               icon: Icons.person,
               activeIcon: Icons.person,
               label: "Profile",
+              selected: _index == 3,
             ),
           ]),
     );

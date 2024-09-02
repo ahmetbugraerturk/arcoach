@@ -102,7 +102,7 @@ class _loginScreenState extends State<loginScreen> {
                   Center(
                     child: Container(
                       padding: const EdgeInsets.all(20),
-                      height: MediaQuery.of(context).size.height / 2.5,
+                      height: MediaQuery.of(context).size.height / 2.6,
                       decoration: BoxDecoration(
                           color: isLightTheme
                               ? const Color.fromARGB(15, 20, 2, 9)
@@ -126,6 +126,15 @@ class _loginScreenState extends State<loginScreen> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    width: 2,
+                                    color: !isLightTheme
+                                        ? const Color.fromARGB(60, 20, 2, 9)
+                                        : const Color.fromARGB(
+                                            80, 255, 240, 246)),
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -144,23 +153,32 @@ class _loginScreenState extends State<loginScreen> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    width: 2,
+                                    color: !isLightTheme
+                                        ? Color.fromARGB(60, 20, 2, 9)
+                                        : const Color.fromARGB(
+                                            80, 255, 240, 246)),
+                              ),
                             ),
                           ),
-                          Positioned(
-                            bottom: 5,
-                            child: Container(
-                              alignment: Alignment.centerRight,
-                              child: GestureDetector(
-                                onTap: () => clickForgotPass(),
-                                child: Text(
-                                  AppLocalizations.of(context)!.forgotPass,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: isLightTheme
-                                        ? constants.kLightTextColor
-                                        : constants.kDarkTextColor,
-                                    height: 1,
-                                  ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 50,
+                          ),
+                          Container(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                              onTap: () => clickForgotPass(),
+                              child: Text(
+                                AppLocalizations.of(context)!.forgotPass,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: isLightTheme
+                                      ? constants.kLightTextColor
+                                      : constants.kDarkTextColor,
+                                  height: 1,
                                 ),
                               ),
                             ),

@@ -410,7 +410,8 @@ class _homePageState extends State<homePage> {
                       constraints: BoxConstraints(minHeight: 175),
                       height: MediaQuery.of(context).size.height / 4.5,
                       width: MediaQuery.of(context).size.width / 2 -
-                          MediaQuery.of(context).size.width / 30,
+                          MediaQuery.of(context).size.width / 30 +
+                          5,
                       child: Column(
                         children: [
                           SizedBox(height: 5),
